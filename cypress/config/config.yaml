@@ -1,0 +1,9 @@
+covarage: true
+baseUrl: http://localhost:8000
+env:
+  account: admin
+  password: '123456'
+  language: zh
+testFiles:
+  - pages/login.spec.ts
+  - pages/device/rsu.spec.ts

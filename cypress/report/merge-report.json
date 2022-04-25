@@ -1,0 +1,206 @@
+{
+  "stats": {
+    "suites": 2,
+    "tests": 4,
+    "passes": 3,
+    "pending": 0,
+    "failures": 1,
+    "start": "2022-04-25T18:19:34.918Z",
+    "end": "2022-04-25T18:20:13.146Z",
+    "duration": 34002,
+    "testsRegistered": 4,
+    "passPercent": 75,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "ecfc1db3-5cd5-47c2-96a8-59dee737ff62",
+      "title": "",
+      "fullFile": "cypress/integration/pages/login.spec.ts",
+      "file": "cypress/integration/pages/login.spec.ts",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "6d126f79-8ae5-4cbd-8b51-dbda0abdb09f",
+          "title": "The Login Page",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "successfully login and check menu",
+              "fullTitle": "The Login Page successfully login and check menu",
+              "timedOut": null,
+              "duration": 11022,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit('/user/login');\ncy.intercept('POST', 'api/tokens').as('login');\ncy.loginInput('account', \"\".concat(username))\n    .loginInput('password', \"\".concat(password))\n    .loginSubmit()\n    .wait('@login')\n    .url()\n    .should('include', '/platform')\n    .wait(1000);\ncy.get('.header').find('.f-middle').click()\n    .wait(1000)\n    .clickMenu(1, 0)\n    .wait(1000)\n    .url()\n    .should('include', '/device/rsu');",
+              "err": {
+                "message": "AssertionError: Timed out retrying after 4000ms: expected 'http://localhost:8000/user/login' to include '/platform'",
+                "estack": "AssertionError: Timed out retrying after 4000ms: expected 'http://localhost:8000/user/login' to include '/platform'\n    at Context.eval (http://localhost:8000/__cypress/tests?p=cypress/integration/pages/login.spec.ts:107:14)",
+                "diff": null
+              },
+              "uuid": "169248aa-18a1-489a-9cfe-46811efe9a30",
+              "parentUUID": "6d126f79-8ae5-4cbd-8b51-dbda0abdb09f",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "successfully error username and password",
+              "fullTitle": "The Login Page successfully error username and password",
+              "timedOut": null,
+              "duration": 3181,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit('/user/login');\ncy.loginInput('account', \"\".concat(username, \"1\"))\n    .loginInput('password', \"\".concat(password, \"1\"))\n    .loginSubmit()\n    .get('.ant-message')\n    .should('have.length', 1);",
+              "err": {},
+              "uuid": "177ee46b-8ec3-4bfc-9914-c9c0484985af",
+              "parentUUID": "6d126f79-8ae5-4cbd-8b51-dbda0abdb09f",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "177ee46b-8ec3-4bfc-9914-c9c0484985af"
+          ],
+          "failures": [
+            "169248aa-18a1-489a-9cfe-46811efe9a30"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 14203,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    },
+    {
+      "uuid": "24e811f7-5e34-4955-8bce-9b554684d573",
+      "title": "",
+      "fullFile": "cypress/integration/pages/device/rsu.spec.ts",
+      "file": "cypress/integration/pages/device/rsu.spec.ts",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "1ef5bef1-7641-4f9f-963c-87344d666f0a",
+          "title": "The RSU Page",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "create rsu",
+              "fullTitle": "The RSU Page create rsu",
+              "timedOut": null,
+              "duration": 14149,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.clickHeaderButton(0).formInput(\"name\", name).formInput(\"sn\", serialNumber).formCascader(\"province\", 0, 1).formInput(\"address\", serialNumber).formSubmit();\ncy.checkItemExist(\"name\", name);",
+              "err": {},
+              "uuid": "4b24ae7f-e761-4142-b3de-1bf381d004c2",
+              "parentUUID": "1ef5bef1-7641-4f9f-963c-87344d666f0a",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "delete rsu",
+              "fullTitle": "The RSU Page delete rsu",
+              "timedOut": null,
+              "duration": 5650,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.searchText(\"name\", \"rsu_name_753133\").clickActionByTitle(\"删除\").clickConfirmActionSubmitButton().checkEmptyTable().clearSearchInput();",
+              "err": {},
+              "uuid": "482454c5-ec3a-493a-b3c5-2d53592b56e2",
+              "parentUUID": "1ef5bef1-7641-4f9f-963c-87344d666f0a",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "4b24ae7f-e761-4142-b3de-1bf381d004c2",
+            "482454c5-ec3a-493a-b3c5-2d53592b56e2"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 19799,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "6.3.1"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/results",
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "5.2.0"
+    }
+  }
+}

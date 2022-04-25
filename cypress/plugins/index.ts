@@ -11,7 +11,7 @@
 
 // This function is called when a project is opened or re-opened (e.g. due to
 // the project's config changing)
-
+const { getConfig } = require("../utils");
 /**
  * @type {Cypress.PluginConfig}
  */
@@ -19,4 +19,23 @@
 module.exports = (on, config) => {
   // `on` is used to hook into various events Cypress emits
   // `config` is the resolved Cypress config
-}
+  const conf = getConfig();
+  // eslint-disable-next-line no-unused-vars
+  const { baseUrl, testFiles = [], translate, env = {} } = conf;
+  if (baseUrl) {
+    config.baseUrl = baseUrl;
+  }
+  if (testFiles && testFiles.length) {
+    config.testFiles = testFiles;
+  }
+  if (translate) {
+    config.env.translate = translate;
+  }
+  config.env = {
+    ...(config.env || {}),
+    ...env
+  };
+
+  require("@cypress/code-coverage/task")(on, config);
+  return config;
+};

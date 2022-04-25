@@ -1,17 +1,19 @@
 {
-  "baseUrl": "http://localhost:3000",
-  "viewportWidth": 890,
+  "baseUrl": "http://localhost:8000",
+  "viewportWidth": 1600,
+  "viewportHeight": 900,
   "numTestsKeptInMemory": 1,
-  "projectId": "n4ynap",
-  "reporter": "cypress-multi-reporters",
+  "video": false,
+  "env": {
+    "account": "admin",
+    "password": "123456",
+    "language": "zh"
+  },
+  "reporter": "mochawesome",
   "reporterOptions": {
-    "reporterEnabled": "mochawesome",
-    "mochawesomeReporterOptions": {
-      "reportDir": "cypress/reports/mocha",
-      "quite": true,
-      "overwrite": false,
-      "html": false,
-      "json": true
-    }
+    "reportDir": "cypress/results",
+    "overwrite": false,
+    "html": false,
+    "json": true
   }
 }
